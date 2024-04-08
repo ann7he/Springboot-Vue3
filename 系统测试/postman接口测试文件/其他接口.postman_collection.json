@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "94e74a5f-4524-4911-8024-de7545363465",
+		"name": "其他接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31097212",
+		"_collection_link": "https://solar-station-407216.postman.co/workspace/big-event~cca6a6af-0b19-4cba-9637-cab6cf6548d2/collection/31097212-94e74a5f-4524-4911-8024-de7545363465?action=share&source=collection_link&creator=31097212"
+	},
+	"item": [
+		{
+			"name": "文件上传",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/filesystem/E_课研/过程资料/素材/播仔素材-静态/播仔0021.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.addHeader(\"Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJ1c2VybmFtZSI6IlRvbXNzIiwiZXhwIjoxNzAxODY5NTYwfQ.y5lTCt-up9ypXB8E5_ammMAAB9ud0ToGzZMWgiLyeF0\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

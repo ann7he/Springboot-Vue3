@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "e661de5c-e07f-438d-990f-79d782e3deda",
+		"name": "电费记录相关接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31097212",
+		"_collection_link": "https://solar-station-407216.postman.co/workspace/big-event~cca6a6af-0b19-4cba-9637-cab6cf6548d2/collection/31097212-e661de5c-e07f-438d-990f-79d782e3deda?action=share&source=collection_link&creator=31097212"
+	},
+	"item": [
+		{
+			"name": "新增电费记录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recordId\":\"DS32104\",\r\n    \"date\":\"\",\r\n    \"dormitoryNo\":\"东三321\",\r\n    \"consumption\":\"60\",\r\n    \"cost\":\"30\",\r\n    \"status\":\"未缴费\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/elecrecord",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"elecrecord"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询宿舍电费",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/elecrecord/detail?dormitoryNo=东二421",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"elecrecord",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "dormitoryNo",
+							"value": "东二421"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "是否缴费",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recordId\":\"DS32101\",\r\n    \"status\":\"已缴费\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/elecrecord?recordId=DE422",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"elecrecord"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "recordId",
+							"value": "DE422"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除电费记录",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/elecrecord?recordId=DY302",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"elecrecord"
+					],
+					"query": [
+						{
+							"key": "recordId",
+							"value": "DY302"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "条件分页",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/elecrecord?pageNum=1&pageSize=4&dormitoryNo=东三321",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"elecrecord"
+					],
+					"query": [
+						{
+							"key": "pageNum",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "4"
+						},
+						{
+							"key": "status",
+							"value": "未缴费",
+							"disabled": true
+						},
+						{
+							"key": "dormitoryNo",
+							"value": "东三321"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.addHeader(\"Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjciLCJ1c2VybmFtZSI6IuS9leWuieeQqjEyMyIsInJvbGUiOiJzdHVkZW50IiwiZXhwIjoxNzAzOTI5Mzg2fQ.TQ0WqonQUurjA6NTIllBt8YgDdmScHlf4-mauPgWAqs\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "c20dc2c9-af29-4114-be3b-e6a7c3820556",
+		"name": "访客登记接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31097212",
+		"_collection_link": "https://solar-station-407216.postman.co/workspace/big-event~cca6a6af-0b19-4cba-9637-cab6cf6548d2/collection/31097212-c20dc2c9-af29-4114-be3b-e6a7c3820556?action=share&source=collection_link&creator=31097212"
+	},
+	"item": [
+		{
+			"name": "添加",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recordId\":\"1230127\",\r\n    \"sno\":\"212106282\",\r\n    \"sname\":\"何安琪\",\r\n    \"visitorName\":\"何弟弟\",\r\n    \"visitTime\":\"\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/visitorrecord",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"visitorrecord"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/visitorrecord/search?sno=212106282",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"visitorrecord",
+						"search"
+					],
+					"query": [
+						{
+							"key": "sno",
+							"value": "212106282"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/visitorrecord?recordId=922001",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"visitorrecord"
+					],
+					"query": [
+						{
+							"key": "recordId",
+							"value": "922001"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.addHeader(\"Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjciLCJ1c2VybmFtZSI6IuS9leWuieeQqjEyMyIsInJvbGUiOiJzdHVkZW50IiwiZXhwIjoxNzAzOTIwNTAwfQ.35HjTv5tglscW7H5DwOEF51cQ6z4X3FYUMao19upi3o\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

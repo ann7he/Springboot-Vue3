@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "f7f4ddd6-abad-48ce-bdd0-fb7cd4e8e6f3",
+		"name": "宿舍管理相关信息",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31097212",
+		"_collection_link": "https://solar-station-407216.postman.co/workspace/big-event~cca6a6af-0b19-4cba-9637-cab6cf6548d2/collection/31097212-f7f4ddd6-abad-48ce-bdd0-fb7cd4e8e6f3?action=share&source=collection_link&creator=31097212"
+	},
+	"item": [
+		{
+			"name": "新增宿舍",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dormitoryNo\":\"东三321\",\r\n    \"dormitoryName\":\"学生公寓\",\r\n    \"occupancy\": 4,\r\n    \"administrator\": \"大婶\",\r\n    \"status\": \"使用中\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/dormitories",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dormitories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dormitoryNo\":\"东一302\",\r\n    \"occupancy\": 3,\r\n    \"administrator\": \"大妈\",\r\n    \"status\": \"使用中\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/dormitories",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dormitories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询某宿舍详情",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dormitories/detail?dormitoryNo=东三321",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dormitories",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "dormitoryNo",
+							"value": "东三321"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "宿舍列表（条件分类）",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dormitories?pageNum=1&pageSize=4&administrator=大妈",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dormitories"
+					],
+					"query": [
+						{
+							"key": "pageNum",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "4"
+						},
+						{
+							"key": "dormitoryNo",
+							"value": "西一402",
+							"disabled": true
+						},
+						{
+							"key": "administrator",
+							"value": "大妈"
+						},
+						{
+							"key": "status",
+							"value": "使用中",
+							"disabled": true
+						},
+						{
+							"key": "dormitoryName",
+							"value": "知行楼",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dormitories?dormitoryNo=东二402",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dormitories"
+					],
+					"query": [
+						{
+							"key": "dormitoryNo",
+							"value": "东二402"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.addHeader(\"Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjciLCJ1c2VybmFtZSI6IuS9leWuieeQqjEyMyIsInJvbGUiOiJzdHVkZW50IiwiZXhwIjoxNzAzODM3OTgwfQ.IDiJcT79oI5r485H1dPBrsDpytOZMGj1kIvSS49wlCA\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

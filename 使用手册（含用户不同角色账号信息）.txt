@@ -1,0 +1,26 @@
+学生
+账号：何安琪123
+密码：123456
+
+管理员
+账号：Tomss
+密码：123456
+
+水电工
+账号：fancy
+密码：123123
+
+
+项目说明
+本宿舍管理系统使用spring-boot+vue3+MySQL的结构进行项目的搭建
+由本人独立学习完成
+
+
+宿舍管理系统运行说明
+
+1、首先需要导入MySQL数据库
+2、打开目录中的后端运行资料，里面有打包好的jar包
+3、可以cmd 在命令行输入 java -jar big-event-1.0-SNAPSHOT.jar（或者打开源码中有java Spring-Boot的工程）
+4、打开后端运行资料目录中的子目录Redis-x64-3.2.100
+5、找到redis-server.exe点击运行
+6、打开源码中的vue3前端工程，在vscode或者WebStore等环境中使用 npm run dev 运行该工程

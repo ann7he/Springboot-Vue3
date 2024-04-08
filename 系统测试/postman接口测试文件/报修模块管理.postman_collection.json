@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "6fd11b57-d8af-4cb0-9c31-c4a2a0fcb2e6",
+		"name": "报修模块管理",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31097212",
+		"_collection_link": "https://solar-station-407216.postman.co/workspace/big-event~cca6a6af-0b19-4cba-9637-cab6cf6548d2/collection/31097212-6fd11b57-d8af-4cb0-9c31-c4a2a0fcb2e6?action=share&source=collection_link&creator=31097212"
+	},
+	"item": [
+		{
+			"name": "新增",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"maintenId\":\"D2Y422\",\r\n    \"dormitoryNo\":\"东二422\",\r\n    \"propertyNo\":\"D2Y422\",\r\n    \"maintenTime\":\"\",\r\n    \"reason\":\"椅子坏掉了！\",\r\n    \"status\":\"报修中\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/maintenance",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "分页列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenance?status=报修中&pageNum=1&pageSize=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenance"
+					],
+					"query": [
+						{
+							"key": "dormitoryNo",
+							"value": "东一302",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "报修中"
+						},
+						{
+							"key": "pageNum",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenance/detail?maintenId=D2C222",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenance",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "maintenId",
+							"value": "D2C222"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新状态",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"maintenId\":\"D1Y302\",\r\n    \"status\":\"已报修\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/maintenance",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/maintenance?maintenId=D2C222",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"maintenance"
+					],
+					"query": [
+						{
+							"key": "maintenId",
+							"value": "D2C222"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.addHeader(\"Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJ1c2VybmFtZSI6IlRvbXNzIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzAzNTA3MDU3fQ.oLwcxNS6WO-tgWLqDJQTRH0VAe5xa1rFDdx2y5whasc\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

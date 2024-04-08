@@ -1,0 +1,434 @@
+用户表
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int unsigned | NO   | PRI | NULL    | auto_increment |
+| username    | varchar(20)  | NO   | UNI | NULL    |                |
+| password    | varchar(32)  | YES  |     | NULL    |                |
+| nickname    | varchar(10)  | YES  |     |         |                |
+| email       | varchar(128) | YES  |     |         |                |
+| user_pic    | varchar(128) | YES  |     |         |                |
+| create_time | datetime     | NO   |     | NULL    |                |
+| update_time | datetime     | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+
+
+
+
+
+学生表
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| sno          | varchar(11) | NO   | PRI | NULL    |       |
+| sname        | varchar(20) | NO   |     | NULL    |       |
+| major        | varchar(20) | NO   |     | NULL    |       |
+| dormitory_no | varchar(20) | NO   |     | NULL    |       |
+| move_in_date | date        | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+
+create table students (
+     sno varchar(11) not null,
+     sname varchar(20) not null,
+     major varchar(20) not null,
+     dormitory_no varchar(20) not null,
+     move_in_date date not null,
+     primary key (sno)
+    );
+
+
+
+
+宿舍表
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| dormitory_no   | varchar(20) | NO   | PRI | NULL    |       |
+| dormitory_name | varchar(50) | NO   |     | NULL    |       |
+| occupancy      | int         | YES  |     | 0       |       |
+| administrator  | varchar(20) | YES  |     | NULL    |       |
+| status         | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+
+create table dormitories(
+    dormitory_no varchar(20) not null,
+    dormitory_name varchar(50) not null,
+    occupancy int default 0,
+    administrator varchar(20),
+    status varchar(20),
+    primary key (dormitory_no)
+    );
+
+
+
+
+财产表
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| property_no   | varchar(20) | NO   | PRI | NULL    |       |
+| dormitory_no  | varchar(20) | NO   | MUL | NULL    |       |
+| property_name | varchar(50) | NO   |     | NULL    |       |
+| purchase_date | date        | NO   |     | NULL    |       |
+| status        | varchar(20) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+create table property(
+     property_no varchar(20) not null,
+     dormitory_no varchar(20) not null,
+     property_name varchar(50) not null,
+     purchase_date date not null,
+     status varchar(20) not null,
+     primary key (property_no),
+     foreign key (dormitory_no) references dormitories(dormitory_no)
+    );
+
+
+
+保修表
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| mainten_id   | varchar(20)  | NO   | PRI | NULL    |       |
+| dormitory_no | varchar(20)  | NO   | MUL | NULL    |       |
+| property_no  | varchar(20)  | NO   | MUL | NULL    |       |
+| mainten_time | datetime     | NO   |     | NULL    |       |
+| reason       | varchar(100) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+CREATE TABLE maintenance (
+  mainten_id varchar(20) NOT NULL,
+  dormitory_no varchar(20) NOT NULL,
+  property_no varchar(20) NOT NULL,
+  mainten_time datetime NOT NULL,
+  reason varchar(100),
+  PRIMARY KEY (mainten_id),
+  FOREIGN KEY (dormitory_no) REFERENCES dormitories(dormitory_no),
+  FOREIGN KEY (property_no) REFERENCES property(property_no)
+);
+
+
+
+用电记录表
+
+
+CREATE TABLE elecRecord (
+  record_id varchar(20) NOT NULL,
+  dormitory_no varchar(20) NOT NULL,
+  date varchar(30) not null,
+  consumption varchar(20),
+  Cost varchar(20),
+  PRIMARY KEY (record_id),
+  FOREIGN KEY (dormitory_no) REFERENCES dormitories(dormitory_no)
+);
+
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| record_id    | varchar(20) | NO   | PRI | NULL    |       |
+| dormitory_no | varchar(20) | NO   | MUL | NULL    |       |
+| date         | varchar(30) | NO   |     | NULL    |       |
+| consumption  | varchar(20) | YES  |     | NULL    |       |
+| cost         | varchar(20) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+
+
+
+访客表
+
+CREATE TABLE visitorRecord (
+  record_id varchar(20) NOT NULL,
+  sno varchar(11) not null,
+  visitor_name varchar(20),
+  visit_time datetime,
+  PRIMARY KEY (record_id),
+  FOREIGN KEY (sno) REFERENCES students(sno)
+);
+
+
+
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| record_id    | varchar(20) | NO   | PRI | NULL    |       |
+| sno          | varchar(11) | NO   | MUL | NULL    |       |
+| visitor_name | varchar(20) | YES  |     | NULL    |       |
+| visit_time   | datetime    | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+
+
+2、创建后台的实体类
+
+
+
+
+3、实现各个接口  postman中的测试用例
+
+3.1 注册
+3.2 登录
+3.3 学生信息
+
+
+	3.3.1  新增
+
+>基本信息
+		
+		> 请求路径：/students
+
+		> 请求方式：POST
+
+		> 接口描述：该接口用于新增学生
+		
+>请求参数
+		请求参数格式：application/json
+
+请求参数说明：
+
+| 参数名称      | 说明     | 类型   | 是否必须 | 备注 |
+| ------------- | --------| ------ | -------- | ---- |
+| sno  	        | 学号         | string | 是       |      |
+| sname         | 姓名         | string | 是       |      |
+| major         | 专业         | string | 是       |      |
+| dormitoryNo   | 宿舍号      | string | 是       |      |
+| moveInDate    | 入住时间   | LocalDate | 是       |      |
+
+请求数据样例：
+
+```json
+{
+    "sno":"123456",
+    "sname":"张三",
+    "major":"软件工程",
+    "dormitoryNo":"西二302"，
+    "moveInDate":"2022-09-02"
+}
+
+
+	3.3.2  查询
+>基本信息
+		
+		> 请求路径：/students
+
+		> 请求方式：GET
+
+		> 接口描述：该接口用于根据学号查询学生信息
+
+
+	| 参数名称 | 说明   | 类型   | 是否必须 | 备注 |
+	| -------- | ------ | ------ | -------- | ---- |
+	| sno       | 主键ID | string | 是       |      |
+
+>请求数据样例：
+
+	```shell
+	sno=123456
+	```
+>响应参数说明：
+
+| 名称             | 类型   | 是否必须 | 默认值 | 备注                  | 其他信息 |
+| ---------------- | ------ | -------- | ------ | --------------------- | -------- |
+| code             | number | 必须     |        | 响应码, 0-成功,1-失败 |          |
+| message          | string | 非必须   |        | 提示信息              |          |
+| data             | object | 必须     |        | 返回的数据            |          |
+| \|-id            | number | 非必须   |        | 主键ID                |          |
+| \|-categoryName  | string | 非必须   |        | 分类名称              |          |
+| \|-categoryAlias | string | 非必须   |        | 分类别名              |          |
+| \|-createTime    | string | 非必须   |        | 创建时间              |          |
+| \|-updateTime    | string | 非必须   |        | 修改时间  
+
+>响应数据
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": {
+        "sno":"123456",
+    	"sname":"张三",
+    	"major":"软件工程",
+    	"dormitoryNo":"西二302"
+    	"moveInDate":"2022-09-02",
+    }
+}
+
+```
+
+	3.3.3  更新
+
+>基本信息
+		
+		> 请求路径：/students
+
+		> 请求方式：PUT
+
+		> 接口描述：该接口用于更新学生信息	
+
+
+>请求参数格式：application/json
+
+	>请求参数说明：
+
+
+	| 参数名称      | 说明     | 类型   | 是否必须 | 备注 |
+	| ------------- | -------- | ------ | -------- | ---- |
+	| id            | 主键ID   | number | 是       |      |
+	| categoryName  | 分类名称 | string | 是       |      |
+	| categoryAlias | 分类别名 | string | 是       |      |
+
+
+>请求数据样例：
+
+	```json
+	{
+   	 "id":6,
+   	 "categoryName":"风土人情",
+   	 "categoryAlias":"ftrq"
+	}
+	```
+
+>响应数据
+	>响应参数说明：
+
+	| 名称    | 类型   | 是否必须 | 默认值 | 备注                  | 其他信息 |
+	| ------- | ------ | -------- | ------ | --------------------- | -------- |
+	| code    | number | 必须     |        | 响应码, 0-成功,1-失败 |          |
+	| message | string | 非必须   |        | 提示信息              |          |
+	| data    | object | 非必须   |        | 返回的数据            |          |
+
+	>响应数据样例：
+
+	```json
+	{
+ 	   "code": 0,
+   	   "message": "操作成功",
+    	  "data": null
+	}
+	```
+	3.3.4    删除
+
+>基本信息
+		
+		> 请求路径：/students/detail
+
+		> 请求方式：DELETE
+
+		> 接口描述：该接口用于根据学号删除学生信息	
+
+>请求参数
+
+	>请求参数格式：queryString
+
+	>请求参数说明：
+
+		| 参数名称 | 说明   | 类型   | 是否必须 | 备注 |
+		| -------- | ------ | ------ | -------- | ---- |
+		| sno       | 主键ID | number | 是       |      |
+
+	>请求数据样例：
+
+		```shell
+		sno=123456
+		```
+>响应数据
+	>响应数据类型：application/json
+
+	>响应参数说明：
+
+	| 名称    | 类型   | 是否必须 | 默认值 | 备注                  | 其他信息 |
+	| ------- | ------ | -------- | ------ | --------------------- | -------- |
+	| code    | number | 必须     |        | 响应码, 0-成功,1-失败 |          |
+	| message | string | 非必须   |        | 提示信息              |          |
+	| data    | object | 非必须   |        | 返回的数据            |          |
+
+	响应数据样例：
+
+	```json
+	{
+   	 "code": 0,
+   	 "message": "操作成功",
+    	"data": null
+	}
+	```
+
+	3.3.5 获取所有该管理员下所有学生的信息
+>基本信息
+		
+		> 请求路径：/students
+
+		> 请求方式：GET
+
+		> 接口描述：该接口用于管理员查询所有学生的信息	
+>请求参数
+
+	无
+
+>响应数据
+
+	响应数据类型：application/json
+
+	响应参数说明：
+
+	| 名称             | 类型   | 是否必须 | 默认值 | 备注                  | 其他信息 |
+	| ---------------- | ------ | -------- | ------ | --------------------- | -------- |
+	| code             | number | 必须     |        | 响应码, 0-成功,1-失败 |          |
+	| message          | string | 非必须   |        | 提示信息              |          |
+	| data             | array  | 必须     |        | 返回的数据            |          |
+	| \|-id            | number | 非必须   |        | 主键ID                |          |
+	| \|-categoryName  | string | 非必须   |        | 分类名称              |          |
+	| \|-categoryAlias | string | 非必须   |        | 分类别名              |          |
+	| \|-createTime    | string | 非必须   |        | 创建时间              |          |
+	| \|-updateTime    | string | 非必须   |        | 修改时间              |          |
+
+响应数据样例：
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        {
+             	"sno":"123456",
+    		"sname":"张三",
+    		"major":"软件工程",
+    		"dormitoryNo":"西二302"
+    		"moveInDate":"2022-09-02",
+        },
+        {
+            	"sno":"123456",
+    		"sname":"张三",
+    		"major":"软件工程",
+    		"dormitoryNo":"西二302"
+    		"moveInDate":"2022-09-02",
+        },
+        {
+             	"sno":"123456",
+    		"sname":"张三",
+    		"major":"软件工程",
+    		"dormitoryNo":"西二302"
+    		"moveInDate":"2022-09-02",
+        }
+    ]
+}
+```
+
+3.4  财产信息
+	
+	3.4.1  新增
+
+
+
+	3.4.2  查询
+
+
+	3.4.3  更新
+
+
+	3.4.4    删除
+	
+
+
+
